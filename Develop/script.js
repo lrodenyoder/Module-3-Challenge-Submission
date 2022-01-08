@@ -62,6 +62,92 @@ var includeLowerCase = function () {
 //END LOWERCASE CHOICE FUNCTION
 
 
+//BEGIN UPPERCASE CHOICE FUNCTION
+var includeUpperCase = function () {
+  var uppercaseOpt = window.prompt("Would you like to include uppercase characters in the password? Enter YES or NO");
+
+  if (uppercaseOpt === "" || uppercaseOpt === null) {
+    window.alert("Please enter a valid answer. Try again.");
+
+    return includeUpperCase();
+  }
+
+  uppercaseOpt = uppercaseOpt.toLowerCase();
+
+  if (uppercaseOpt === "yes") {
+    window.alert("You have chosen to INCLUDE uppercase characters.");
+
+    return true;
+  } else if (uppercaseOpt === "no") {
+    window.alert("You have chosen NOT to include uppercase characters.");
+
+    return false;
+  } else {
+    window.alert("Please enter a valid answer. Try again.");
+
+    return includeUpperCase();
+  }
+};
+//END UPPERCASE CHOICE FUNCTION
+
+//BEGIN NUMERIC CHOICE FUNCTION
+var includeNumber = function () {
+  var numberOpt = window.prompt("Would you like to include numeric characters in the password? Enter YES or NO");
+
+  if (numberOpt === "" || numberOpt === null) {
+    window.alert("Please enter a valid answer. Try again.");
+
+    return includeNumber();
+  }
+
+  numberOpt = numberOpt.toLowerCase();
+
+  if (numberOpt === "yes") {
+    window.alert("You have chosen to INCLUDE numeric characters.");
+
+    return true;
+  } else if (numberOpt === "no") {
+    window.alert("You have chosen NOT to include numeric characters.");
+
+    return false;
+  } else {
+    window.alert("Please enter a valid answer. Try again.");
+
+    return includeNumber();
+  }
+};
+//END NUMERIC CHOICE FUNCTION
+
+//BEGIN SPECIAL CHOICE FUNCTION
+var includeSpecial = function () {
+  var specialOpt = window.prompt("Would you like to include special characters in the password? Enter YES or NO");
+
+  if (specialOpt === "" || specialOpt === null) {
+    window.alert("Please enter a valid answer. Try again.");
+
+    return includeSpecial();
+  }
+
+  specialOpt = specialOpt.toLowerCase();
+
+  if (specialOpt === "yes") {
+    window.alert("You have chosen to INCLUDE special characters.");
+
+    return true;
+  } else if (specialOpt === "no") {
+    window.alert("You have chosen NOT to include special characters.");
+
+    return false;
+  } else {
+    window.alert("Please enter a valid answer. Try again.");
+
+    return includeSpecial();
+  }
+};
+//END SPECIAL CHOICE FUNCTION
+
+
+
 
 // Write password to the #password input
 function writePassword() {
