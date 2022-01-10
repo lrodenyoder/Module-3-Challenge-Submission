@@ -2,15 +2,15 @@
 
 //random variables
 const alphaLower = "abcdefghijklmnopqrstuvwxyz";
+//var alphaLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 const alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numbers = "0123456789";
 const specials = "!@#$%^&*_-+=";
-var choices;
+var passwordCharacters = [];
 
 
 //generatePassword FUNCTION BEGIN
 function generatePassword() {
-
   //BEGIN LOWERCASE CHOICE FUNCTION
   var includeLowerCase = function () {
     var lowercaseOpt = window.prompt(
@@ -131,82 +131,118 @@ function generatePassword() {
   };
   //END SPECIAL CHOICE FUNCTION
 
+  //BEGIN USER INPUT OPTIONS
+  //IF USER INCLUDES LOWER CASE
+  if (includeLowerCase() === true) {
+    //code to include random lowercase characters
+    passwordCharacters.push(alphaLower);
+  }
+  //IF USER INCLUDES LOWER CASE END
+
+  //IF USER INCLUDES LOWER CASE
+  if (includeUpperCase() === true) {
+    //code to include random lowercase characters
+    passwordCharacters.push(alphaUpper);
+  }
+  //IF USER INCLUDES LOWER CASE END
+
+  //IF USER INCLUDES LOWER CASE
+  if (includeNumber() === true) {
+    //code to include random lowercase characters
+    passwordCharacters.push(numbers);
+  }
+  //IF USER INCLUDES LOWER CASE END
+
+  //IF USER INCLUDES LOWER CASE
+  if (includeSpecial() === true) {
+    //code to include random lowercase characters
+    passwordCharacters.push(specials);
+  }
+  //IF USER INCLUDES LOWER CASE END
+    //END USER INPUT OPTIONS
+
+  ///CHANGE HERE: USE CALLBACK FUNCTIONS TO EXECUTE OPTION FUNCTIONS
   //USER INPUT IF STATEMENTS BEGIN
-  if (
-    !includeLowerCase() &&
-    !includeUpperCase() &&
-    !includeNumber() &&
-    !includeSpecial()
-  ) {
-    window.alert("You must choose at least one criteria! Try again.");
+  // if (
+  //   !includeLowerCase() &&
+  //   !includeUpperCase() &&
+  //   !includeNumber() &&
+  //   !includeSpecial()
+  // ) {
+  //   window.alert("You must choose at least one criteria! Try again.");
 
-    return generatePassword();
-  } else if (
-    includeLowerCase() &&
-    includeUpperCase() &&
-    includeNumber() &&
-    includeSpecial()
-  ) {
-    choices = specials.concat(numbers, alphaLower, alphaUpper);
-  }
-  // Else if for 3 positive options
-  else if (includeUpperCase() && includeNumber() && includeSpecial()) {
-    choices = specials.concat(numbers, alphaUpper);
-  } else if (includeSpecial() && includeNumber() && includeLowerCase()) {
-    choices = specials.concat(numbers, alphaLower);
-  } else if (includeSpecial() && includeLowerCase() && includeUpperCase()) {
-    includeLowerCase();
-    choices = specials.concat(alphaLower, alphaUpper);
-  } else if (includeNumber() && includeLowerCase() && includeUpperCase()) {
-    choices = numbers.concat(alphaLower, alphaUpper);
-  }
-  // Else if for 2 positive options
-  else if (includeSpecial() && includeNumber()) {
-    choices = specials.concat(numbers);
-  } else if (includeSpecial() && includeLowerCase()) {
-    choices = specials.concat(alphaLower);
-  } else if (includeSpecial() && includeUpperCase()) {
-    choices = specials.concat(alphaUpper);
-  } else if (includeLowerCase() && includeNumber()) {
-    choices = alphaLower.concat(numbers);
-  } else if (includeLowerCase() && includeUpperCase()) {
-    choices = alphaLower.concat(alphaUpper);
-  } else if (includeNumber() && includeUpperCase()) {
-    choices = numbers.concat(alphaUpper);
-  }
-  // Else if for 1 positive option
-  else if (includeSpecial()) {
-    choices = specials;
-  } else if (includeNumber()) {
-    choices = numbers;
-  } else if (includeLowerCase()) {
-    choices = alphaLower;
-  } else if (includeUpperCase()) {
-    choices = alphaUpper;
-  }
+  //   return generatePassword();
+  // } else if (
+  //   includeLowerCase() &&
+  //   includeUpperCase() &&
+  //   includeNumber() &&
+  //   includeSpecial()
+  // ) {
+  //   choices = specials.concat(numbers, alphaLower, alphaUpper);
+  // }
+  // // Else if for 3 positive options
+  // else if (includeUpperCase() && includeNumber() && includeSpecial()) {
+  //   choices = specials.concat(numbers, alphaUpper);
+  // } else if (includeSpecial() && includeNumber() && includeLowerCase()) {
+  //   choices = specials.concat(numbers, alphaLower);
+  // } else if (includeSpecial() && includeLowerCase() && includeUpperCase()) {
+  //   includeLowerCase();
+  //   choices = specials.concat(alphaLower, alphaUpper);
+  // } else if (includeNumber() && includeLowerCase() && includeUpperCase()) {
+  //   choices = numbers.concat(alphaLower, alphaUpper);
+  // }
+  // // Else if for 2 positive options
+  // else if (includeSpecial() && includeNumber()) {
+  //   choices = specials.concat(numbers);
+  // } else if (includeSpecial() && includeLowerCase()) {
+  //   choices = specials.concat(alphaLower);
+  // } else if (includeSpecial() && includeUpperCase()) {
+  //   choices = specials.concat(alphaUpper);
+  // } else if (includeLowerCase() && includeNumber()) {
+  //   choices = alphaLower.concat(numbers);
+  // } else if (includeLowerCase() && includeUpperCase()) {
+  //   choices = alphaLower.concat(alphaUpper);
+  // } else if (includeNumber() && includeUpperCase()) {
+  //   choices = numbers.concat(alphaUpper);
+  // }
+  // // Else if for 1 positive option
+  // else if (includeSpecial()) {
+  //   choices = specials;
+  // } else if (includeNumber()) {
+  //   choices = numbers;
+  // } else if (includeLowerCase()) {
+  //   choices = alphaLower;
+  // } else if (includeUpperCase()) {
+  //   choices = alphaUpper;
+  // }
   //USER INPUT IF STATEMENTS END
+  //END CHANGE CALLBACKS HERE
 
-  console.log(getRandomLower());
-  console.log(getRandomUpper());
-  console.log(getRandomNumbers());
-  console.log(getRandomSpecials());
+  //   console.log(getRandomLower());
+  //   console.log(getRandomUpper());
+  //   console.log(getRandomNumbers());
+  //   console.log(getRandomSpecials());
 
   var chosenLength = chooseLength();
-  console.log(chosenLength);
+  //   console.log(chosenLength);
 
   var password = [];
 
-    // Start random selection variables:
-    // Random selection for all variables: 
-    
-    for (var i = 0; i < chosenLength; i++) {
-        var pickChoices = choices[Math.floor(Math.random() * choices.length)];
-        password.push(pickChoices);
-    }
-    // This joins the password array and converts it to a string
-    // Worked with a tutor to incorporate this option
-    var ps = password.join("");
-    return ps;
+  // Start random selection variables:
+  // Random selection for all variables:
+
+  for (var i = 0; i < chosenLength; i++) {
+    var pickChoices =
+      passwordCharacters.join("")[
+        Math.floor(Math.random() * passwordCharacters.join("").length)
+      ];
+    password.push(pickChoices);
+  }
+
+  // This joins the password array and converts it to a string
+  // Worked with a tutor to incorporate this option
+  var finalPassword = password.join("");
+  return finalPassword;
 }
 //generatePassword FUNCTION END
 
