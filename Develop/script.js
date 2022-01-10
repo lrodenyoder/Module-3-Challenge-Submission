@@ -15,7 +15,7 @@ var passwordCharacters = [];
 function generatePassword() {
   //reset/empty passwordCharacters array to not have to refresh page to update character options choice
   reset(passwordCharacters);
-  
+
   //BEGIN USER INPUT OPTIONS
   //IF USER INCLUDES LOWER CASE
   if (includeLowerCase() === true) {
@@ -37,13 +37,6 @@ function generatePassword() {
   if (includeSpecial() === true) {
     passwordCharacters.push(specials);
   }
-  
-  //IF USER DOES NOT CHOOSE AT LEAST ONE OPTION
-  if (!includeLowerCase() && !includeUpperCase() && !includeNumber() && !includeSpecial()) {
-    window.alert("Please choose at least one character type to include.");
-
-    return generatePassword();
-  }
   //END USER INPUT OPTIONS
 
   //variable to run chooseLength() to get length of password
@@ -61,6 +54,12 @@ function generatePassword() {
       ];
     //push each random character selection to the password array
     password.push(pickChoices);
+  }
+
+  //IF USER DOES NOT CHOOSE AT LEAST ONE OPTION
+  if (pickChoices === undefined) {
+    window.alert("Please choose at least one character type to include.");
+    return generatePassword();
   }
 
   // This joins the password array and converts it to a string
