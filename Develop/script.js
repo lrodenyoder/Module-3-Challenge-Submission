@@ -2,15 +2,18 @@
 
 //random variables
 const alphaLower = "abcdefghijklmnopqrstuvwxyz";
-//var alphaLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 const alphaUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numbers = "0123456789";
 const specials = "!@#$%^&*_-+=";
+var reset = function () {
+  passwordCharacters = [];
+};
 var passwordCharacters = [];
 
 
 //generatePassword FUNCTION BEGIN
 function generatePassword() {
+  reset(passwordCharacters);
   //BEGIN LOWERCASE CHOICE FUNCTION
   var includeLowerCase = function () {
     var lowercaseOpt = window.prompt(
@@ -134,98 +137,33 @@ function generatePassword() {
   //BEGIN USER INPUT OPTIONS
   //IF USER INCLUDES LOWER CASE
   if (includeLowerCase() === true) {
-    //code to include random lowercase characters
     passwordCharacters.push(alphaLower);
   }
   //IF USER INCLUDES LOWER CASE END
 
   //IF USER INCLUDES LOWER CASE
   if (includeUpperCase() === true) {
-    //code to include random lowercase characters
     passwordCharacters.push(alphaUpper);
   }
   //IF USER INCLUDES LOWER CASE END
 
   //IF USER INCLUDES LOWER CASE
   if (includeNumber() === true) {
-    //code to include random lowercase characters
     passwordCharacters.push(numbers);
   }
   //IF USER INCLUDES LOWER CASE END
 
   //IF USER INCLUDES LOWER CASE
   if (includeSpecial() === true) {
-    //code to include random lowercase characters
     passwordCharacters.push(specials);
   }
   //IF USER INCLUDES LOWER CASE END
     //END USER INPUT OPTIONS
 
-  ///CHANGE HERE: USE CALLBACK FUNCTIONS TO EXECUTE OPTION FUNCTIONS
-  //USER INPUT IF STATEMENTS BEGIN
-  // if (
-  //   !includeLowerCase() &&
-  //   !includeUpperCase() &&
-  //   !includeNumber() &&
-  //   !includeSpecial()
-  // ) {
-  //   window.alert("You must choose at least one criteria! Try again.");
-
-  //   return generatePassword();
-  // } else if (
-  //   includeLowerCase() &&
-  //   includeUpperCase() &&
-  //   includeNumber() &&
-  //   includeSpecial()
-  // ) {
-  //   choices = specials.concat(numbers, alphaLower, alphaUpper);
-  // }
-  // // Else if for 3 positive options
-  // else if (includeUpperCase() && includeNumber() && includeSpecial()) {
-  //   choices = specials.concat(numbers, alphaUpper);
-  // } else if (includeSpecial() && includeNumber() && includeLowerCase()) {
-  //   choices = specials.concat(numbers, alphaLower);
-  // } else if (includeSpecial() && includeLowerCase() && includeUpperCase()) {
-  //   includeLowerCase();
-  //   choices = specials.concat(alphaLower, alphaUpper);
-  // } else if (includeNumber() && includeLowerCase() && includeUpperCase()) {
-  //   choices = numbers.concat(alphaLower, alphaUpper);
-  // }
-  // // Else if for 2 positive options
-  // else if (includeSpecial() && includeNumber()) {
-  //   choices = specials.concat(numbers);
-  // } else if (includeSpecial() && includeLowerCase()) {
-  //   choices = specials.concat(alphaLower);
-  // } else if (includeSpecial() && includeUpperCase()) {
-  //   choices = specials.concat(alphaUpper);
-  // } else if (includeLowerCase() && includeNumber()) {
-  //   choices = alphaLower.concat(numbers);
-  // } else if (includeLowerCase() && includeUpperCase()) {
-  //   choices = alphaLower.concat(alphaUpper);
-  // } else if (includeNumber() && includeUpperCase()) {
-  //   choices = numbers.concat(alphaUpper);
-  // }
-  // // Else if for 1 positive option
-  // else if (includeSpecial()) {
-  //   choices = specials;
-  // } else if (includeNumber()) {
-  //   choices = numbers;
-  // } else if (includeLowerCase()) {
-  //   choices = alphaLower;
-  // } else if (includeUpperCase()) {
-  //   choices = alphaUpper;
-  // }
-  //USER INPUT IF STATEMENTS END
-  //END CHANGE CALLBACKS HERE
-
-  //   console.log(getRandomLower());
-  //   console.log(getRandomUpper());
-  //   console.log(getRandomNumbers());
-  //   console.log(getRandomSpecials());
-
+  //variable to run chooseLength() to get length of password
   var chosenLength = chooseLength();
-  //   console.log(chosenLength);
 
+  //empty array to hold final password
   var password = [];
 
   // Start random selection variables:
@@ -240,7 +178,6 @@ function generatePassword() {
   }
 
   // This joins the password array and converts it to a string
-  // Worked with a tutor to incorporate this option
   var finalPassword = password.join("");
   return finalPassword;
 }
