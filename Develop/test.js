@@ -63,42 +63,95 @@ var chooseLength = function () {
 };
 
 var generatePassword = function () {
+  const randomFunc = {
+    lower: getRandomLower,
+    upper: getRandomUpper,
+    number: getRandomNumbers,
+    symbol: getRandomSpecials,
+  };
 
-    const randomFunc = {
-      lower: getRandomLower,
-      upper: getRandomUpper,
-      number: getRandomNumbers,
-      symbol: getRandomSpecials,
-    };
+  var passwordCharacters = "";
+  const typesCount = lower + upper + number + symbol;
+  const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(
+    (item) => Object.values(item)[0]
+  );
 
-    var passwordCharacters = "";
-    const typesCount = lower + upper + number + symbol;
-    const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter(
-      (item) => Object.values(item)[0]
-    );
+  for (let i = 0; i < length; i += typesCount) {
+    typesArr.forEach((type) => {
+      const funcName = Object.keys(type)[0];
+      generatedPassword += randomFunc[funcName]();
+    });
+  }
 
-    for (let i = 0; i < length; i += typesCount) {
-        typesArr.forEach(type => {
-            const funcName = Object.keys(type)[0];
-            generatedPassword += randomFunc[funcName]();
-        });
-    }
+  //   if (includeLowerCase()) {
+  //     passwordCharacters = passwordCharacters.concat(alphaLower);
+  //   }
 
-//   if (includeLowerCase()) {
-//     passwordCharacters = passwordCharacters.concat(alphaLower);
-//   }
+  //   if (includeUpperCase()) {
+  //     passwordCharacters = passwordCharacters.concat(alphaUpper);
+  //   }
 
-//   if (includeUpperCase()) {
-//     passwordCharacters = passwordCharacters.concat(alphaUpper);
-//   }
+  //   if (includeNumber()) {
+  //     passwordCharacters = passwordCharacters.concat(numbers);
+  //   }
 
-//   if (includeNumber()) {
-//     passwordCharacters = passwordCharacters.concat(numbers);
-//   }
+  //   if (includeSpecial()) {
+  //     passwordCharacters = passwordCharacters.concat(specials);
+  //   }
 
-//   if (includeSpecial()) {
-//     passwordCharacters = passwordCharacters.concat(specials);
-//   }
+  if (
+    !includeLowerCase() &&
+    !includeUpperCase() &&
+    !includeNumber() &&
+    !includeSpecial()
+  ) {
+    window.alert("You must choose at least one criteria! Try again.");
+
+    return generatePassword();
+  } else if (
+    includeLowerCase() &&
+    includeUpperCase() &&
+    includeNumber() &&
+    includeSpecial()
+  ) {
+    choices = specials.concat(numbers, alphaLower, alphaUpper);
+  }
+  // Else if for 3 positive options
+  else if (includeUpperCase() && includeNumber() && includeSpecial()) {
+    choices = specials.concat(numbers, alphaUpper);
+  } else if (includeSpecial() && includeNumber() && includeLowerCase()) {
+    choices = specials.concat(numbers, alphaLower);
+  } else if (includeSpecial() && includeLowerCase() && includeUpperCase()) {
+    includeLowerCase();
+    choices = specials.concat(alphaLower, alphaUpper);
+  } else if (includeNumber() && includeLowerCase() && includeUpperCase()) {
+    choices = numbers.concat(alphaLower, alphaUpper);
+  }
+  // Else if for 2 positive options
+  else if (includeSpecial() && includeNumber()) {
+    choices = specials.concat(numbers);
+  } else if (includeSpecial() && includeLowerCase()) {
+    choices = specials.concat(alphaLower);
+  } else if (includeSpecial() && includeUpperCase()) {
+    choices = specials.concat(alphaUpper);
+  } else if (includeLowerCase() && includeNumber()) {
+    choices = alphaLower.concat(numbers);
+  } else if (includeLowerCase() && includeUpperCase()) {
+    choices = alphaLower.concat(alphaUpper);
+  } else if (includeNumber() && includeUpperCase()) {
+    choices = numbers.concat(alphaUpper);
+  }
+  // Else if for 1 positive option
+  else if (includeSpecial()) {
+    choices = specials;
+  } else if (includeNumber()) {
+    choices = numbers;
+  } else if (includeLowerCase()) {
+    choices = alphaLower;
+  }
+  else if (includeUpperCase()) {
+    choices = alphaUpper;
+  }
 
   debugger;
 
@@ -111,7 +164,7 @@ var generatePassword = function () {
   }
 
   return pickChoices;
-};
+};;
 
 
 
