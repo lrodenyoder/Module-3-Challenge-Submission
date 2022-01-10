@@ -15,6 +15,86 @@ var passwordCharacters = [];
 function generatePassword() {
   reset(passwordCharacters);
   //BEGIN LOWERCASE CHOICE FUNCTION
+
+
+  //BEGIN USER INPUT OPTIONS
+  //IF USER INCLUDES LOWER CASE
+  if (includeLowerCase() === true) {
+    passwordCharacters.push(alphaLower);
+  }
+  //IF USER INCLUDES LOWER CASE END
+
+  //IF USER INCLUDES LOWER CASE
+  if (includeUpperCase() === true) {
+    passwordCharacters.push(alphaUpper);
+  }
+  //IF USER INCLUDES LOWER CASE END
+
+  //IF USER INCLUDES LOWER CASE
+  if (includeNumber() === true) {
+    passwordCharacters.push(numbers);
+  }
+  //IF USER INCLUDES LOWER CASE END
+
+  //IF USER INCLUDES LOWER CASE
+  if (includeSpecial() === true) {
+    passwordCharacters.push(specials);
+  }
+  //IF USER INCLUDES LOWER CASE END
+    //END USER INPUT OPTIONS
+
+  //variable to run chooseLength() to get length of password
+  var chosenLength = chooseLength();
+
+  //empty array to hold final password
+  var password = [];
+
+  // Start random selection variables:
+  // Random selection for all variables:
+
+  for (var i = 0; i < chosenLength; i++) {
+    var pickChoices =
+      passwordCharacters.join("")[
+        Math.floor(Math.random() * passwordCharacters.join("").length)
+      ];
+    password.push(pickChoices);
+  }
+
+  // This joins the password array and converts it to a string
+  var finalPassword = password.join("");
+  return finalPassword;
+}
+//generatePassword FUNCTION END
+
+
+//chooseLength FUNCTION BEGIN
+var chooseLength = function () {
+  var passLength = window.prompt(
+    "Select length of password between 8 - 128 characters."
+  );
+
+  if (isNaN(passLength) || passLength === "" || passLength === null) {
+    window.alert("Please enter a valid number between 8 - 128.");
+
+    return chooseLength();
+  }
+
+  passLength = parseInt(passLength);
+
+  if (passLength < 8 || 128 < passLength) {
+    window.alert(
+      "Your entry was either to short or too long. Please try again"
+    );
+
+    return chooseLength();
+  } else if (8 <= passLength && passLength <= 128) {
+    window.alert("Your password will be " + passLength + " characters long.");
+
+    return passLength;
+  }
+}
+//chooseLength FUNCTION END
+
   var includeLowerCase = function () {
     var lowercaseOpt = window.prompt(
       "Would you like to include lowercase characters in the password? Enter YES or NO"
@@ -133,108 +213,6 @@ function generatePassword() {
     }
   };
   //END SPECIAL CHOICE FUNCTION
-
-  //BEGIN USER INPUT OPTIONS
-  //IF USER INCLUDES LOWER CASE
-  if (includeLowerCase() === true) {
-    passwordCharacters.push(alphaLower);
-  }
-  //IF USER INCLUDES LOWER CASE END
-
-  //IF USER INCLUDES LOWER CASE
-  if (includeUpperCase() === true) {
-    passwordCharacters.push(alphaUpper);
-  }
-  //IF USER INCLUDES LOWER CASE END
-
-  //IF USER INCLUDES LOWER CASE
-  if (includeNumber() === true) {
-    passwordCharacters.push(numbers);
-  }
-  //IF USER INCLUDES LOWER CASE END
-
-  //IF USER INCLUDES LOWER CASE
-  if (includeSpecial() === true) {
-    passwordCharacters.push(specials);
-  }
-  //IF USER INCLUDES LOWER CASE END
-    //END USER INPUT OPTIONS
-
-  //variable to run chooseLength() to get length of password
-  var chosenLength = chooseLength();
-
-  //empty array to hold final password
-  var password = [];
-
-  // Start random selection variables:
-  // Random selection for all variables:
-
-  for (var i = 0; i < chosenLength; i++) {
-    var pickChoices =
-      passwordCharacters.join("")[
-        Math.floor(Math.random() * passwordCharacters.join("").length)
-      ];
-    password.push(pickChoices);
-  }
-
-  // This joins the password array and converts it to a string
-  var finalPassword = password.join("");
-  return finalPassword;
-}
-//generatePassword FUNCTION END
-
-
-//RANDOM GENERATION FUNCTIONS BEGIN
-//random lowercase
-function getRandomLower() {
-  return alphaLower[Math.floor(Math.random() * alphaLower.length)];
-}
-
-// random uppercase
-function getRandomUpper() {
-  return alphaUpper[Math.floor(Math.random() * alphaUpper.length)];
-}
-
-// random numbers
-function getRandomNumbers() {
-  return numbers[Math.floor(Math.random() * numbers.length)];
-}
-
-// random specials
-function getRandomSpecials() {
-  return specials[Math.floor(Math.random() * specials.length)];
-}
-//RANDOM GENERATION FUNCTIONS END
-
-
-
-//chooseLength FUNCTION BEGIN
-var chooseLength = function () {
-  var passLength = window.prompt(
-    "Select length of password between 8 - 128 characters."
-  );
-
-  if (isNaN(passLength) || passLength === "" || passLength === null) {
-    window.alert("Please enter a valid number between 8 - 128.");
-
-    return chooseLength();
-  }
-
-  passLength = parseInt(passLength);
-
-  if (passLength < 8 || 128 < passLength) {
-    window.alert(
-      "Your entry was either to short or too long. Please try again"
-    );
-
-    return chooseLength();
-  } else if (8 <= passLength && passLength <= 128) {
-    window.alert("Your password will be " + passLength + " characters long.");
-
-    return passLength;
-  }
-}
-//chooseLength FUNCTION END
 
 
 
