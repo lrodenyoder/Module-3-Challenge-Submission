@@ -8,7 +8,7 @@
 
 This project is designed to be a random generator of strong passwords. It is designed for users to choose what criteria they would like to be included in and the length of their password. The website takes the users' inputs and uses JavaScript to generate the requested password.
 
-## Personal Portfolio
+## Strong Password Generator
 [Click Here](https://lrodenyoder.github.io/password-generator-project/) to go to the password generator.
 
 <p>
