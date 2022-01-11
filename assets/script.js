@@ -52,7 +52,7 @@ function generatePassword() {
       passwordCharacters.join("")[
         Math.floor(Math.random() * passwordCharacters.join("").length)
       ];
-    //push each random character selection to the password array
+    //push each random character selection to the password array on each loop
     password.push(pickChoices);
   }
 
@@ -81,6 +81,7 @@ var chooseLength = function () {
     return chooseLength();
   }
 
+  //changes string input into number value
   passLength = parseInt(passLength);
 
   if (passLength < 8 || 128 < passLength) {
@@ -109,6 +110,7 @@ var includeLowerCase = function () {
     return includeLowerCase();
   }
 
+  //changes yes/no input to all lower case to account for mixing cases
   lowercaseOpt = lowercaseOpt.toLowerCase();
 
   if (lowercaseOpt === "yes") {
